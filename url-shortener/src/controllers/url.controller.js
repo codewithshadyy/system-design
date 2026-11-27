@@ -4,6 +4,34 @@ const Url = require("../models/Url")
 const {nanoid} = require("nanoid")
 
 
+
+
+
+
+
+
+exports.health = async(req, res) => {
+
+    try {
+
+        return res.status(200).json({
+
+            success:true,
+            message:"Server is up and running"
+        })
+        
+    } catch (error) {
+
+        return res.status(500).json({
+            succes:false,
+            message:"Server error",
+            error:error.message
+        })
+        
+    }
+}
+
+
 exports.uploadUrl = async(req, res, next) => {
 
     
