@@ -8,10 +8,11 @@ exports.uploadUrl = async(req, res, next) => {
 
     
 
-        const {originalUrl, customAlias} =  req.body
+        const {originalURL, customAlias} =  req.body
 
         try {
-            new URL(originalUrl)
+            new URL(originalURL)
+            console.log(originalURL)
             
         } catch (error) {
             
@@ -35,15 +36,15 @@ exports.uploadUrl = async(req, res, next) => {
                 })
             }
 
-            const newUrl = await Url.create({originalUrl, shortCode})
+            const newUrl = await Url.create({originalURL, shortCode})
 
 
             const baseUrl = `${req.protocol}://${req.get("host")}`
 
             return res.status(201).json({
-                shortUrl:`${baseurl}/${newUrl.shortCode}`,
+                shortUrl:`${baseUrl}/${newUrl.shortCode}`,
                 shortcode:newUrl.shortCode,
-                longurl:newUrl.originalUrl
+                longurl:newUrl.originalURL
             })
             
         } catch (error) {

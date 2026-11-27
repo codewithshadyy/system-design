@@ -21,10 +21,13 @@ const urlSchema = new mongoose.Schema({
     },
 
     description:{
-        type:Text
+        type:String
     }
 
 },{timestamps:true})
 
 
-module.exports = mongoose.model("Url". urlSchema)
+const Url = mongoose.model("Url", urlSchema)
+
+
+module.exports = Url
