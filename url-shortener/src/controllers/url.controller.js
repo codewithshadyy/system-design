@@ -67,7 +67,7 @@ exports.uploadUrl = async(req, res, next) => {
             const newUrl = await Url.create({originalURL, shortCode})
 
 
-            const baseUrl = `${req.protocol}://${req.get("host")}`
+            const baseUrl = `${req.protocol}://${req.get("host")}/urls/`
 
             return res.status(201).json({
                 shortUrl:`${baseUrl}/${newUrl.shortCode}`,
