@@ -8,7 +8,11 @@ exports.databaseConnection = async () => {
 
     try {
         
-        await mongoose.connect(env_variables.db_url)
+        const conn = await mongoose.connect(env_variables.db_url)
+        console.log(`
+            Database connected\n
+        
+            `)
         
 
     } catch (error) {
