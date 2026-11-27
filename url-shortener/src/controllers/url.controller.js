@@ -87,3 +87,34 @@ exports.uploadUrl = async(req, res, next) => {
 
     
 }
+
+
+exports.Redirect = async(req, res) => {
+
+
+    try {
+
+
+        const urlRecord = await Url.findOneAndUpdate(
+           {shortCode:req.params.shortCode},
+           {$inc:{clicks:1}},
+           {new:true}
+        )
+
+
+        if(!urlRecord){
+             return res.status(404).json({ error: 'Short URL not found' })
+        }
+
+        return res.redirect(302, urlRecord.originalURL)
+        
+    } catch (error) {
+
+        return res.status(500).json({
+            sucess:false,
+            message:"Server error",
+            error:error.message
+        })
+        
+    }
+}
